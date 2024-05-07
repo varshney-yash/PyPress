@@ -1,4 +1,5 @@
 from pathlib import Path
+from decouple import config
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -6,7 +7,7 @@ SECRET_KEY = 'django-insecure-jcoi+poqq6m5576g3nbo%g-nuqiq0u_elpww6mczu(ej(fjr(a
 
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -50,8 +51,12 @@ WSGI_APPLICATION = 'PyPress.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': config('MASTER_DB_NAME',''),
+        'USER': config('MASTER_DB_USER',''),
+        'PASSWORD': config('MASTER_DB_PASSWORD',''),
+        'HOST': config('MASTER_DB_HOST',''),
+        'PORT' : '3306'
     }
 }
 
