@@ -1,19 +1,27 @@
 {% extends "blog/base.html" %}
 
 {% block content %}
-<div class="space-y-8">
-    <h1 class="text-3xl font-bold mb-4">Latest Posts</h1>
+<div class="container mt-4">
     {% for post in posts %}
-        <div class="bg-white p-6 rounded-lg shadow-lg">
-            <h2 class="text-2xl font-bold text-purple-800">{{ post.title }}</h2>
-            <p class="text-gray-600">By {{ post.author }} on {{ post.date_posted }}</p>
-            {% if post.date_posted != post.date_updated %}
-                <p class="text-sm text-gray-500">Edited: {{ post.date_updated }}</p>
-            {% endif %}
-            <div class="mt-4 text-gray-800">
-                {{ post.content }}
+        <article class="card mb-4">
+            <div class="card-body">
+                <div class="article-metadata d-flex justify-content-between">
+                    <div>
+                        <a href="#" class="text-primary">{{ post.author }}</a>
+                        <small class="text-muted ml-2">{{ post.date_posted|date:"F d, Y" }}</small>
+                    </div>
+                    <div>
+                    </div>
+                </div>
+                <h2 class="card-title">
+                    <a href="#" class="article-title" style="color: #005f73;">{{ post.title }}</a> 
+                </h2>
+                <p class="card-text">{{ post.content|truncatewords:30 }}</p>
+                <a href="#" class="btn" style="background-color: #ffb3c1; color: white;">Read more</a> 
             </div>
-        </div>
+        </article>
+    {% empty %}
+        <p>No posts are available.</p>
     {% endfor %}
 </div>
-{% endblock %}
+{% endblock content %}
