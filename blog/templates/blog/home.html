@@ -1,15 +1,19 @@
 {% extends "blog/base.html" %}
 
 {% block content %}
-<h1 class="text-3xl font-bold mb-4">Latest Posts</h1>
-{% for post in posts %}
-    <div class="mb-6 p-4 bg-white shadow-md rounded-lg">
-        <h2 class="text-xl font-bold">{{ post.title }}</h2>
-        <p class="text-gray-600">{{ post.author }} on {{ post.date_posted }}</p>
-        {% if post.date_posted != post.date_updated %}
-            <p class="text-sm text-gray-500">Edited: {{ post.date_updated }}</p>
-        {% endif %}
-        <p class="mt-2">{{ post.content }}</p>
-    </div>
-{% endfor %}
+<div class="space-y-8">
+    <h1 class="text-3xl font-bold mb-4">Latest Posts</h1>
+    {% for post in posts %}
+        <div class="bg-white p-6 rounded-lg shadow-lg">
+            <h2 class="text-2xl font-bold text-purple-800">{{ post.title }}</h2>
+            <p class="text-gray-600">By {{ post.author }} on {{ post.date_posted }}</p>
+            {% if post.date_posted != post.date_updated %}
+                <p class="text-sm text-gray-500">Edited: {{ post.date_updated }}</p>
+            {% endif %}
+            <div class="mt-4 text-gray-800">
+                {{ post.content }}
+            </div>
+        </div>
+    {% endfor %}
+</div>
 {% endblock %}
