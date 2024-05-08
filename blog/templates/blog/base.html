@@ -4,30 +4,31 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" crossorigin="anonymous">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    
     <style>
         body {
             background-color: #f0f8ff; /* Soft greenish-blue */
         }
-        .navbar, .footer {
+        nav, .page-footer {
             background-color: #005f73; /* Greenish hue blue */
         }
-        .navbar-nav .nav-link, .footer a {
+        .nav-wrapper a, .page-footer a {
             color: #ffb3c1; /* Pinkish hue */
         }
-        .article-title {
+        .card-title {
             color: #005f73; /* Greenish hue blue */
         }
-        .btn-primary {
+        .btn {
             background-color: #ffb3c1; /* Pinkish hue */
-            border: none;
         }
-        .btn-primary:hover {
+        .btn:hover {
             background-color: #ffccd5; /* Lighter pink */
         }
-        @media (max-width: 768px) {
-            .sidebar {
-                display: none; /* Hide sidebar on small screens */
+        @media (max-width: 992px) {
+            .sidenav-hide {
+                display: none; /* Hide specific sidebar elements on small screens */
             }
         }
     </style>
@@ -36,54 +37,53 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-lg navbar-light fixed-top">
-            <div class="container">
-                <a class="navbar-brand" href="{% url 'blog-home' %}">Django Blog</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarContent">
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'blog-home' %}">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'blog-about' %}">About</a>
-                        </li>
-                    </ul>
-                    <ul class="navbar-nav ml-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Login</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Register</a>
-                        </li>
-                    </ul>
-                </div>
+        <nav>
+            <div class="nav-wrapper container">
+                <a href="{% url 'blog-home' %}" class="brand-logo">Django Blog</a>
+                <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                <ul class="right hide-on-med-and-down">
+                    <li><a href="{% url 'blog-home' %}">Home</a></li>
+                    <li><a href="{% url 'blog-about' %}">About</a></li>
+                    <li><a href="#">Login</a></li>
+                    <li><a href="#">Register</a></li>
+                </ul>
             </div>
         </nav>
+        <ul class="sidenav" id="mobile-demo">
+            <li><a href="{% url 'blog-home' %}">Home</a></li>
+            <li><a href="{% url 'blog-about' %}">About</a></li>
+            <li><a href="#">Login</a></li>
+            <li><a href="#">Register</a></li>
+        </ul>
     </header>
-    <main role="main" class="container mt-5 pt-3">
-        <div class="row">
-            <div class="col-md-8">
-                {% block content %}
-                {% endblock %}
-            </div>
-            <div class="col-md-4 sidebar">
-                <aside class="content-section">
-                    <h3 class="h5 text-muted">Other projects</h3>
-                    <div class="list-group">
-                        <a href="#" class="list-group-item list-group-item-action">Multithreaded Cache Server</a>
-                        <a href="#" class="list-group-item list-group-item-action">E-counselor:RAG Chatbot</a>
-                        <a href="#" class="list-group-item list-group-item-action">Blood Donation App</a>
-                        <a href="#" class="list-group-item list-group-item-action">...</a>
-                    </div>
-                </aside>
+    <main>
+        <div class="container">
+            <div class="row">
+                <div class="col s12 m8">
+                    {% block content %}
+                    {% endblock %}
+                </div>
+                <div class="col s12 m4 sidenav-hide">
+                    <aside>
+                        <h5 class="text-muted">Other projects</h5>
+                        <ul class="collection">
+                            <li class="collection-item"><a href="#">Multithreaded Cache Server</a></li>
+                            <li class="collection-item"><a href="#">E-counselor:RAG Chatbot</a></li>
+                            <li class="collection-item"><a href="#">Blood Donation App</a></li>
+                            <li class="collection-item">...</li>
+                        </ul>
+                    </aside>
+                </div>
             </div>
         </div>
     </main>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" crossorigin="anonymous"></script>
+    <!-- Materialize JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var elems = document.querySelectorAll('.sidenav');
+            var instances = M.Sidenav.init(elems);
+        });
+    </script>
 </body>
 </html>
