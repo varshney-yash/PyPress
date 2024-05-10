@@ -4,7 +4,7 @@ import os
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = 'django-insecure-jcoi+poqq6m5576g3nbo%g-nuqiq0u_elpww6mczu(ej(fjr(a'
+SECRET_KEY = config('SECRET_KEY')
 
 DEBUG = True
 
@@ -56,12 +56,12 @@ WSGI_APPLICATION = 'PyPress.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
+        'ENGINE': config('MASTER_DB_ENGINE'),
         'NAME': config('MASTER_DB_NAME',''),
         'USER': config('MASTER_DB_USER',''),
         'PASSWORD': config('MASTER_DB_PASSWORD',''),
         'HOST': config('MASTER_DB_HOST',''),
-        'PORT' : '3306'
+        'PORT' : config('MASTER_DB_PORT')
     }
 }
 
