@@ -29,9 +29,11 @@ class UserPostListView(ListView):
 class PostDetailView(DetailView):
     model = Post
 
+from .forms import PostForm
+
 class PostCreateView(LoginRequiredMixin, CreateView):
     model = Post
-    fields = ['title', 'content']
+    form_class = PostForm
 
     def form_valid(self, form):
         form.instance.author = self.request.user
