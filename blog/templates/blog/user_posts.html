@@ -1,5 +1,5 @@
 {% extends "blog/base.html" %}
-
+{% load blog_filters %}
 {% block content %}
 <h2 class="subtle-h2">Blogs by {{ view.kwargs.username }} - {{ page_obj.paginator.count }} blog(s)</h2>
 <div class="container mt-4">
