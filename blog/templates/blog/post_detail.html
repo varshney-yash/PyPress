@@ -6,7 +6,7 @@
         <div class="section">
             <h3 class="deep-purple-text darken-1">{{ object.title }}</h3>
             <p class="grey-text">
-                <i class="material-icons tiny">person</i> by <a href="#" class="pink-text lighten-1">{{ object.author }}</a>
+                <i class="material-icons tiny">person</i> by <a href="{% url 'user-blogs' object.author.username %}" class="pink-text lighten-1">{{ object.author }}</a>
                 <span class="right">
                     <i class="material-icons tiny">event</i> {{ object.date_posted|date:"F d, Y" }}
                 </span>
