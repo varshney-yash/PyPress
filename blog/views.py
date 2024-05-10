@@ -14,6 +14,7 @@ class PostListView(ListView):
     template_name = 'blog/home.html'
     context_object_name = 'posts'
     ordering = ['-date_posted']
+    paginate_by = 2
 
 class PostDetailView(DetailView):
     model = Post
@@ -45,13 +46,6 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     def test_func(self) -> bool | None:
         post = self.get_object()
         return self.request.user == post.author
-
-def home(request):
-    posts = Post.objects.all()
-    context = {
-        'posts' : posts
-    }
-    return render(request, 'blog/home.html', context)
 
 def about(request):
     return render(request, 'blog/about.html', {'title' : 'About'})
