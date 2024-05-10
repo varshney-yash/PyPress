@@ -16,7 +16,7 @@
                         </p>
                     </div>
                 </div>
-                <p>{{ post.content|strip_html_and_truncate:30 }}</p> 
+                <p>{{ post.content|strip_html_and_truncate:30|safe }}</p> 
             </div>
             <div class="card-action">
                 <a href="{% url 'blog-detail' post.id %}" class="waves-effect waves-light btn pink lighten-2">Read more</a> 
