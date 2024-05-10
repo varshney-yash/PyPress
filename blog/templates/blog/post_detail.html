@@ -1,0 +1,29 @@
+{% extends "blog/base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="mb-4">
+        <div class="section">
+            <h3 class="deep-purple-text darken-1">{{ object.title }}</h3>
+            <p class="grey-text">
+                <i class="material-icons tiny">person</i> by <a href="#" class="pink-text lighten-1">{{ object.author }}</a>
+                <span class="right">
+                    <i class="material-icons tiny">event</i> {{ object.date_posted|date:"F d, Y" }}
+                </span>
+            </p>
+            <p>{{ object.content }}</p>
+        </div>
+        {% if object.author == user %}
+            <a href="{% url 'blog-update' object.id %}" class="btn-small waves-effect waves-light orange" style="margin-right: 10px;">
+                <i class="material-icons left">edit</i>Update
+            </a>
+            <a href="{% url 'blog-delete' object.id %}" class="btn-small waves-effect waves-light red">
+                <i class="material-icons left">delete</i>Delete
+            </a>
+        {% endif %}
+    </div>
+    {% if not object %}
+        <p class="center-align">Post unavailable!</p>
+    {% endif %}
+</div>
+{% endblock content %}

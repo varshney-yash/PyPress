@@ -3,13 +3,12 @@
 {% block content %}
 <div class="container mt-4">
     {% for post in posts %}
-        <div class="card hoverable mb-4"> <!-- Using hoverable Materialize card -->
+        <div class="card hoverable mb-4"> 
             <div class="card-content">
                 <div class="row">
                     <div class="col s12">
-                        <!-- Post metadata -->
                         <span class="card-title">
-                            <a href="#" class="deep-purple-text darken-1">{{ post.title }}</a>
+                            <a href="{% url 'blog-detail' post.id %}" class="deep-purple-text darken-1">{{ post.title }}</a>
                         </span>
                         <p class="grey-text">
                             <i class="material-icons tiny">person</i> by <a href="#" class="pink-text lighten-1">{{ post.author }}</a>
@@ -17,14 +16,14 @@
                         </p>
                     </div>
                 </div>
-                <p>{{ post.content|truncatewords:30 }}</p> <!-- Truncated text for preview -->
+                <p>{{ post.content|truncatewords:30 }}</p> 
             </div>
             <div class="card-action">
-                <a href="#" class="waves-effect waves-light btn pink lighten-2">Read more</a> <!-- Materialize styled button -->
+                <a href="{% url 'blog-detail' post.id %}" class="waves-effect waves-light btn pink lighten-2">Read more</a> 
             </div>
         </div>
     {% empty %}
-        <p class="center-align">No posts are available.</p> <!-- Centered text for no posts -->
+        <p class="center-align">No posts are available.</p>
     {% endfor %}
 </div>
 {% endblock content %}
