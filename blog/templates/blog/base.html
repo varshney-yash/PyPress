@@ -39,7 +39,7 @@
     <header>
         <nav>
             <div class="nav-wrapper container">
-                <a href="{% url 'blog-home' %}" class="brand-logo">Django Blog</a>
+                <a href="{% url 'blog-home' %}" class="brand-logo">PyPress</a>
                 <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                 <ul class="right hide-on-med-and-down">
                     <li><a href="{% url 'blog-home' %}">Home</a></li>
@@ -60,6 +60,13 @@
         <div class="container">
             <div class="row">
                 <div class="col s12 m8">
+                    {% if messages %}
+                        {% for message in messages %}
+                        <div class="card-panel {% if message.tags %}{{ message.tags }}{% else %}blue{% endif %}">
+                                {{message}}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
                     {% block content %}
                     {% endblock %}
                 </div>
