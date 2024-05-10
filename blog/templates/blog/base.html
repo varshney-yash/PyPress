@@ -72,9 +72,9 @@
                 <div class="col s12 m8">
                     {% if messages %}
                         {% for message in messages %}
-                        <div class="card-panel {% if message.tags %}{{ message.tags }}{% else %}blue{% endif %}">
-                                {{message}}
-                            </div>
+                        <div class="card-panel {{ message.tags|default:'blue lighten-4 blue-text text-darken-4' }}" style="padding: 8px; font-size: 0.8rem;">
+                            {{ message }}
+                        </div>
                         {% endfor %}
                     {% endif %}
                     {% block content %}
