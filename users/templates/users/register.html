@@ -2,27 +2,24 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-<div class="container mt-4">
-    <div class="row">
-        <div class="col s12 m8 offset-m2 l6 offset-l3">
-            <div class="card">
-                <form method="POST" class="card-content">
-                    {% csrf_token %}
-                    <span class="card-title" style="color: #005f73;">Join Today</span>
-                    {{ form|crispy }}
-                    <div class="card-action">
-                        <button class="btn waves-effect waves-light" type="submit" style="background-color: #ffb3c1; color: white;">Sign Up
-                            <i class="material-icons right">send</i>
-                        </button>
-                    </div>
-                </form>
-            </div>
-            <div class="center-align mt-2">
-                <small>
-                    Have an Account? <a href="{% url 'login' %}" style="color: #005f73;">Sign In</a>
-                </small>
-            </div>
+<div class="container mx-auto mt-4 px-4">
+    <div class="max-w-sm mx-auto">
+        <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+            <form method="POST">
+                {% csrf_token %}
+                <h2 class="block text-center text-2xl font-bold mb-6" style="color: #005f73;">Join Today</h2>
+                {{ form|crispy }}
+                <div class="flex items-center justify-center mt-4">
+                    <button class="bg-pink-300 hover:bg-pink-400 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+                        Sign Up
+                        <i class="fas fa-arrow-right ml-2"></i>
+                    </button>
+                </div>
+            </form>
         </div>
+        <p class="text-center mt-2">
+            Have an account? <a href="{% url 'login' %}" class="text-blue-500">Sign in</a>
+        </p>
     </div>
 </div>
-{% endblock content %}
+{% endblock %}
