@@ -5,3 +5,4 @@ ipython==8.24.0
 django-crispy-forms==2.1
 crispy-bootstrap5==2024.2
 django-ckeditor==6.7.1
+gunicorn==22.0.0
