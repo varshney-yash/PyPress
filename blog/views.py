@@ -8,6 +8,8 @@ from django.views.generic import (
     UpdateView, DeleteView
     )
 from .models import Post
+from django.http import HttpResponse
+import json
 
 class PostListView(ListView):
     model = Post
@@ -61,3 +63,7 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
 def about(request):
     return render(request, 'blog/about.html', {'title' : 'About'})
+
+def healthcheck(request):
+    message = {"status" : "ok!"}
+    return HttpResponse(json.dumps(message))
